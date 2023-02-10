@@ -1,0 +1,136 @@
+---
+title: "Graph Types"
+author: "Indhumathy Chelliah"
+date: "2023-02-03"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Plot No :1 - Tree shape
+
+```{r , echo=FALSE}
+library(DiagrammeR)
+grViz("
+  digraph {
+  layout = dot
+    node [shape = circle,color=green,style=filled,fixedsize=True,width=0.6]
+    edge[color=grey,arrowhead=vee]
+    A[label = 'A= @@1']
+    B[label = 'B=@@2']
+    C[label = 'C=@@3']
+    D[label = 'D=@@4']
+    E[label = 'E=@@5']
+    A->B
+    A->C
+    B->D
+    C->E
+    
+  }
+  [1]:15
+  [2]:10
+  [3]:20
+  [4]:2
+  [5]:2
+   ")
+
+```
+## Plot No :2 - Node in Same Rank
+```{r , echo=FALSE}
+library(DiagrammeR)
+grViz("
+  digraph {
+  layout = dot
+    node [shape = circle,color=green,style=filled,fixedsize=True]
+    edge[color=grey,arrowhead=vee,minlen = 1]
+    A[label = 'A=@@1']
+    B[label = 'B=@@2']
+    C[label = 'C=@@3']
+    D[label = 'D=@@4']
+    E[label = 'E=@@5']
+    A->B
+    B->D
+    edge [minlen = 2]
+    rank=same {A->C}
+    rank=same {B->E}
+    
+  }
+  [1]:15
+  [2]:10
+  [3]:20
+  [4]:2
+  [5]:2
+   ")
+
+```
+## Plot No :3 - Node starting from the down arrow.
+```{r , echo=FALSE}
+library(DiagrammeR)
+grViz("
+  digraph {
+  layout = dot
+    node [shape = circle,color=green,style=filled,fontsize=45,fixedsize=True,width=4.0]
+    edge[color=grey,arrowhead=vee,penwidth=5,arrowsize=5]
+    A[label = 'A= @@1']
+    B[label = 'B=@@2']
+    C[label = 'C=@@3']
+    D[label = 'D=@@4']
+    E[label = 'E=@@5']
+    
+    
+blank1[label = '', width = 0.01, height = 0.01]   
+A -> blank1[dir=none];
+blank1 -> B[minlen=10];
+  {{ rank = same; blank1 B }}
+blank1 -> C
+
+blank2[label = '', width = 0.01, height = 0.01]   
+C -> blank2[dir=none];
+blank2 -> D[minlen=1];
+  {{ rank = same; blank2 E }}
+blank2 -> E [minlen=10]
+    
+  }
+  [1]:15
+  [2]:10
+  [3]:20
+  [4]:2
+  [5]:2
+   ")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
